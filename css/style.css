@@ -58,7 +58,8 @@ body{
   border: 2px solid blue;
   border-radius: 40px;
   overflow: hidden;
-  width: 20rem;
+  width: 200px;
+  height: 200px;
   display: inline-block;
 }
 
