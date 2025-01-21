@@ -1,73 +1,77 @@
-html {
+
+html{
   font-size: 62.5%;
 }
 
-body {
+body{
   margin: 0;
-  background-image: url('/images/background.jpg');
+  background-image: url(/images/background.svg);
   background-size: cover;
-  font-family: Arial, sans-serif;
+}
+
+.gallery__item-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  display: block;
+}
+
+.logo{
+  background-color: gray;
+}
+
+.header-title{
+  margin: 0;
+}
+
+
+.detailed-image{
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+}
+
+
+.dog {
+  width: 50%;
+  height: 50%;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row-reverse;
+}
+
+
+.gallery__item-title{
+  display: block;
+  width: 20rem;
+  font-size: 2.5rem;
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.gallery__item{
+  border: 2px solid blue;
+  border-radius: 40px;
+  overflow: hidden;
+  width: 20rem;
+  display: inline-block;
 }
 
 .logo {
   font-size: 4rem;
   text-align: center;
-  background-color: gray;
-  padding: 1rem 0;
-  color: white;
 }
 
-
-.container-detailed{
+.gallery{
+  gap: 10px;
   display: flex;
-}
-.detailed-image {
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.detailed-image .dog {
-  width: 20rem;
-  height: 20rem;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
-
-.detailed-image .title {
-  font-size: 2rem;
-  margin-top: 1rem;
-}
-
-.gallery {
-  display: flex
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto
   ;
-      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-      gap: 1rem;
-      list-style: none;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-}
-
-.gallery--item{
-  width: 300px;
-  height: 300px;
-}
-
-.gallery--item {
-  position: relative;
-  border: 2px solid lightgray;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s, filter 0.3s;
-}
-
-.gallery--item:hover {
-  transform: scale(1.05);
-  filter: blur(2px);
-}
-
-.gallery--item_image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
