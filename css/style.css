@@ -3,7 +3,7 @@ html {
 }
 body {
   margin: 0;
-  background: url(../images/background.svg);
+  background: url(../images/bg.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -94,6 +94,7 @@ h2 {
   min-width: 12rem;
   max-height: 15rem;
   margin-top: 10px;
+  cursor: pointer;
 }
 .logo {
   font-family: LakeshoreDrive;
@@ -105,6 +106,7 @@ h2 {
 }
 
 @media screen and (min-width: 500px) {
+
   .main {
     flex-direction: row-reverse;
     flex-wrap: nowrap;
@@ -131,10 +133,16 @@ h2 {
     min-height: 13rem;
     max-height: 13rem;
   }
+  .gallery--item:hover {
+    filter: invert(20%) blur(2px);
+  }
 }
 @media screen and (min-width: 1000px) {
   body {
-    background: url(../images/background.svg);
+    background: url(../images/bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
   }
   .detailedFrame {
     margin-top: 5rem;
@@ -148,7 +156,7 @@ h2 {
     position: absolute;
     font-size: 4rem;
     bottom: 10rem;
-    left: -10rem;
+    /* left: -10rem; */
   }
   .detailedContainer--title:hover {
     font-family: Airstream;
@@ -199,4 +207,12 @@ h2 {
   .logo {
     font-size: 4rem;
   }
+}
+
+.detailedContainer--image {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.detailedContainer--title {
+  animation: fadeInUp 1.5s ease-in-out;
 }
