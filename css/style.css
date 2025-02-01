@@ -216,3 +216,22 @@ h2 {
 .detailedContainer--title {
   animation: fadeInUp 1.5s ease-in-out;
 }
+
+/* Анимация для изображения */
+.detailedContainer--image {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Анимация для заголовка */
+.detailedContainer--title {
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* Дополнительно, если хотите использовать анимацию при клике */
+.detailedContainer--image.animate__fadeIn {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.detailedContainer--title.animate__fadeInUp {
+  animation: fadeInUp 1.5s ease-in-out;
+}
