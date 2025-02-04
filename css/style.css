@@ -1,4 +1,4 @@
-@import url(variables.css);
+@import url('variables.css');
 
 html {
   font-size: var(--base-size);
@@ -217,7 +217,6 @@ h2 {
 
 .detailedContainer--title {
   animation: fadeInUp 1.5s ease-in-out;
-}
 }
 
 .detailedContainer--image.animate__fadeIn {
