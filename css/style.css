@@ -1,8 +1,17 @@
-@import url('variables.css');
+
+html {
+    --base-size:62.5%;
+    --gallery-item-width: 12rem;
+    --gallery-item-height: 10rem;
+    --detailed-image-width: 30rem;
+    --detailed-image-height: 25rem;
+    --border-radius: 40px;
+}
 
 html {
   font-size: var(--base-size);
 }
+
 body {
   margin: 0;
   background: url(../images/bg.svg);
