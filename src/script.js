@@ -1,25 +1,58 @@
 const detailedImage = document.querySelector(".detailedContainer--image");
 const detailedTitle = document.querySelector(".detailedContainer--title");
-const galleryImages = document.querySelectorAll(".gallery--item_image");
-for (let i = 0; i < galleryImages.length; i++) {
-  galleryImages[i].addEventListener("click", function () {
-    setDetails(galleryImages[i]);
+const gallery = document.querySelector(".gallery");
+
+async function Cats() {
+  const response = await fetch("https://api.thecatapi.com/v1/breeds");
+  const data = await response.json();
+  const items = getItems(getImages(data));
+  gallery.innerHTML = items;
+  addEventListeners();
+}
+
+function getImages(data) {
+  return data.map(cat => `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`);
+}
+
+function getItems(data) {
+  return data
+    .map(cat => getItem(
+      `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`,
+      cat.name =, 
+      cat.description || "Описание отсутствует"
+    ))
+    .join("");
+}
+
+
+function getItem(image, title, description) {
+  return `
+    <li class="gallery--item">
+      <img src="${image}" class="gallery--item_image">
+      <h3 class="gallery--item_title">${title}</h3>
+      <p class="gallery--item_description">${description}</p>
+    </li>
+  `;
+}
+
+
+
+function addEventListeners() {
+  document.querySelectorAll(".gallery--item_image").forEach(img => {
+    img.addEventListener("click", () => setDetails(img));
   });
 }
+
 function setDetails(galleryImage) {
-  let image = galleryImage.getAttribute("data-detailed-image");
-  detailedImage.src = "";
-  detailedImage.src = image;
-  detailedTitle.innerHTML =
-    galleryImage.getAttribute("data-detailed-title") +
-    '<span class="for_ellipsis">...</span>';
+  detailedImage.src = galleryImage.getAttribute("data-detailed-image");
   animate();
 }
+
 function animate() {
   detailedImage.classList.remove("animation-up");
-  detailedTitle.classList.remove("animation-down");
-  setTimeout(function () {
+  setTimeout(() => {
     detailedImage.classList.add("animation-up");
-    detailedTitle.classList.add("animation-down");
   }, 0);
 }
+
+Cats();
