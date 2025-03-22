@@ -1,13 +1,12 @@
-
-
 body {
   --width-gallery-image: 12rem;
-  --width-gallery: calc(var(--width-gallery-image) * 2 + var(--width-gallery-image) / 2);
+  --width-gallery: calc(
+    var(--width-gallery-image) * 2 + var(--width-gallery-image) / 2
+  );
   --height-gallery-image: 10rem;
-  --background-color-title: aliceblue;
+  --background-color-title: rgb(200, 213, 224);
   --color-title: black;
-  --width-detailed-title: 30ch
-
+  --width-detailed-title: 30ch;
 }
 html {
   font-size: 62.5%;
@@ -50,8 +49,6 @@ h2 {
     0% 70%,
     0% 30%
   );
- 
-
 }
 .animation-down {
   animation: zoomInDown;
@@ -61,6 +58,12 @@ h2 {
   animation: zoomInUp;
   animation-duration: 2.5s;
 }
+
+.detailedContainer--title {
+  transition: transform 0.4s ease-in-out, font-size 0.4s ease-in-out,
+    white-space 0.4s ease-in-out;
+}
+
 .detailedContainer--title {
   display: inline-block;
   width: var(--width-detailed-title);
@@ -74,10 +77,9 @@ h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
   font-style: italic;
-  
 }
+
 .detailedContainer--title:hover {
   font-family: airstream;
   overflow: visible;
@@ -91,7 +93,6 @@ h2 {
 }
 .for_ellipsis {
   display: block;
-  
 }
 .gallery--item_image {
   width: var(--width-gallery-image);
@@ -106,14 +107,14 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-left: calc(16rem - var(--width-gallery-image))
+  padding-left: calc(16rem - var(--width-gallery-image));
 }
 .gallery--item_title {
   display: block;
   width: var(--width-gallery-image);
   height: calc(var(--width-gallery-image) * 0.25);
-  font-size: 1.8rem;
-  font-family: 'Open Sans';
+  font-size: 1.3rem;
+  font-family: "Open Sans";
   font-weight: 600;
   background-color: var(--background-color-title);
   color: var(--color-title);
@@ -140,7 +141,6 @@ h2 {
 }
 
 @media screen and (min-width: 500px) {
- 
   .main {
     flex-direction: row-reverse;
     flex-wrap: nowrap;
@@ -149,7 +149,6 @@ h2 {
     bottom: 6rem;
   }
 
-  
   .gallery {
     max-height: 80vh;
     width: auto;
@@ -164,18 +163,22 @@ h2 {
     min-height: calc(var(--width-gallery-image) + 1rem);
     max-height: calc(var(--width-gallery-image) + 1rem);
   }
+  .gallery--item:hover {
+    filter: invert(20%) blur(2px);
+  }
 }
 @media screen and (min-width: 1000px) {
   body {
     --width-gallery-image: 25rem;
-    --width-gallery: calc(var(--width-gallery-image) * 2 + var(--width-gallery-image) / 2);
+    --width-gallery: calc(
+      var(--width-gallery-image) * 2 + var(--width-gallery-image) / 2
+    );
     --height-gallery-image: 15rem;
   }
   body {
     background: url(../images/dalmatian-spots.svg);
   }
   .detailedContainer--title:hover {
-    
     font-size: 5rem;
   }
   .detailedFrame {
@@ -192,10 +195,7 @@ h2 {
     bottom: 2rem;
     left: -10rem;
   }
-  
- 
 
-  
   .gallery {
     list-style: none;
     max-height: 85vh;

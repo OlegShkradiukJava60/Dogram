@@ -1,58 +1,69 @@
 const detailedImage = document.querySelector(".detailedContainer--image");
 const detailedTitle = document.querySelector(".detailedContainer--title");
-const gallery = document.querySelector(".gallery");
+const galleryContainer = document.querySelector(".gallery");
 
-async function Cats() {
-  const response = await fetch("https://api.thecatapi.com/v1/breeds");
-  const data = await response.json();
-  const items = getItems(getImages(data));
-  gallery.innerHTML = items;
-  addEventListeners();
+
+async function cats() {
+  if (!galleryContainer) {
+    console.error("Element 'gallery' not found");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://api.thecatapi.com/v1/breeds");
+    if (!response.ok) throw new Error("Failed to load breed list");
+
+    const data = await response.json();
+    galleryContainer.innerHTML = getItems(data);
+
+    addImage();
+  } catch (error) {
+    console.error("Data loading error:", error);
+    galleryContainer.innerHTML =
+      "<p>Error loading data. Please try again later.</p>";
+  }
 }
 
-function getImages(data) {
-  return data.map(cat => `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`);
+function addImage() {
+  document.querySelectorAll(".gallery--item_image").forEach((image) => {
+    image.addEventListener("click", function () {
+      setDetails(image);
+    });
+  });
 }
 
 function getItems(data) {
   return data
-    .map(cat => getItem(
-      `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`,
-      cat.name =, 
-      cat.description || "Описание отсутствует"
-    ))
+    .map((breed) => {
+      const image = breed.reference_image_id
+        ? `https://cdn2.thecatapi.com/images/${breed.reference_image_id}.jpg`
+        : "images/placeholder.jpg";
+      return `
+        <li class="gallery--item">
+          <img
+            src="${image}"
+            alt="${breed.name}"
+            class="gallery--item_image"
+            data-detailed-image="${image}"
+            data-detailed-title="${breed.description || "Description unavailable"}"
+          />
+          <span class="gallery--item_title">${breed.name}</span>
+        </li>
+      `;
+    })
     .join("");
 }
 
 
-function getItem(image, title, description) {
-  return `
-    <li class="gallery--item">
-      <img src="${image}" class="gallery--item_image">
-      <h3 class="gallery--item_title">${title}</h3>
-      <p class="gallery--item_description">${description}</p>
-    </li>
-  `;
-}
-
-
-
-function addEventListeners() {
-  document.querySelectorAll(".gallery--item_image").forEach(img => {
-    img.addEventListener("click", () => setDetails(img));
-  });
-}
-
-function setDetails(galleryImage) {
-  detailedImage.src = galleryImage.getAttribute("data-detailed-image");
-  animate();
-}
-
-function animate() {
+function setDetails(image) {
   detailedImage.classList.remove("animation-up");
-  setTimeout(() => {
-    detailedImage.classList.add("animation-up");
-  }, 0);
+  detailedTitle.classList.remove("animation-down");
+
+  detailedImage.src = image.getAttribute("data-detailed-image");
+  detailedTitle.innerHTML = image.getAttribute("data-detailed-title");
+
+  detailedImage.classList.add("animation-up");
+  detailedTitle.classList.add("animation-down");
 }
 
-Cats();
+cats();
