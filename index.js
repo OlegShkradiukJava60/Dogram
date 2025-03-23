@@ -1,17 +1,23 @@
-// scope
-//let has block scope
-// variable leak: you define variable in block implying freeing of variable outside of 
-function funVar() {
-    for (var i = 0; i < 3; i++) {
-        i++
+let iLet = 10;
+var iVar = 20;
+var iVar = 30;
+
+console.log('Ilet from global Window object', window.iVar);
+console.log('Ilet from global Window object', window.iLet);
+
+function funVar () {
+    var x = 10;
+    for(var x = 0; x < 5; x++){
+
     }
-    console.log(i);
+    console.log('var', x);
 }
-funVar();
-function funLet() {
-    for (var i = 0; i < 3; i++) {
-        i++
+funVar()
+function funLet () {
+    var x = 10;
+    for(var x = 0; x < 5; x++){
+
     }
-    console.log(i);
+    console.log('let', x);
 }
-funLet();
+funLet()
