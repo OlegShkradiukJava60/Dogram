@@ -1,4 +1,4 @@
-let a = 10;
+
 function fun1() {
     a = 40;
     if ( a == 40){
