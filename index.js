@@ -1,23 +1,11 @@
-let iLet = 10;
-var iVar = 20;
-var iVar = 30;
-
-console.log('Ilet from global Window object', window.iVar);
-console.log('Ilet from global Window object', window.iLet);
-
-function funVar () {
-    var x = 10;
-    for(var x = 0; x < 5; x++){
-
-    }
-    console.log('var', x);
+fun (10);
+function fun(num){
+    console.log(num);
 }
-funVar()
-function funLet () {
-    var x = 10;
-    for(var x = 0; x < 5; x++){
+b = 10;
+var b; 
+console.log('b', b);
 
-    }
-    console.log('let', x);
-}
-funLet()
+a = 10;
+let a; 
+console.log('a', a); //error
