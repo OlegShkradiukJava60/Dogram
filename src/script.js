@@ -1,27 +1,51 @@
 const detailedImage = document.querySelector(".detailedContainer--image");
 const detailedTitle = document.querySelector(".detailedContainer--title");
+const detailedOverview = document.querySelector(".detailedContainer--overview");
 const galleryContainer = document.querySelector(".gallery");
 
+const apiKey = "8c79629e2f6857b0b7addc2a59ac30b6";
 
-async function cats() {
-  if (!galleryContainer) {
-    console.error("Element 'gallery' not found");
-    return;
-  }
-
+async function drawMovies() {
   try {
-    const response = await fetch("https://api.thecatapi.com/v1/breeds");
-    if (!response.ok) throw new Error("Failed to load breed list");
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_companies=420`
+    );
+
 
     const data = await response.json();
-    galleryContainer.innerHTML = getItems(data);
-
+    galleryContainer.innerHTML = displayMovies(data.results);
     addImage();
   } catch (error) {
-    console.error("Data loading error:", error);
-    galleryContainer.innerHTML =
-      "<p>Error loading data. Please try again later.</p>";
+    console.error("Request Error:", error);
   }
+}
+
+function displayMovies(movies) {
+  return movies
+    .map((movie) => {
+      const image = movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : "placeholder.jpg";
+      const detailedImage = movie.backdrop_path
+        ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+        : image;
+      const overview = movie.overview || "No description.";
+
+      return `
+        <li class="gallery--item">
+          <img
+            src="${image}"
+            alt="${movie.title}"
+            class="gallery--item_image"
+            data-detailed-image="${detailedImage}"
+            data-detailed-title="${movie.title}"
+            data-detailed-overview="${overview}"
+          />
+          <span class="gallery--item_title">${movie.title}</span>
+        </li>
+      `;
+    })
+    .join("");
 }
 
 function addImage() {
@@ -32,38 +56,20 @@ function addImage() {
   });
 }
 
-function getItems(data) {
-  return data
-    .map((breed) => {
-      const image = breed.reference_image_id
-        ? `https://cdn2.thecatapi.com/images/${breed.reference_image_id}.jpg`
-        : "images/placeholder.jpg";
-      return `
-        <li class="gallery--item">
-          <img
-            src="${image}"
-            alt="${breed.name}"
-            class="gallery--item_image"
-            data-detailed-image="${image}"
-            data-detailed-title="${breed.description || "Description unavailable"}"
-          />
-          <span class="gallery--item_title">${breed.name}</span>
-        </li>
-      `;
-    })
-    .join("");
-}
-
-
 function setDetails(image) {
   detailedImage.classList.remove("animation-up");
   detailedTitle.classList.remove("animation-down");
 
-  detailedImage.src = image.getAttribute("data-detailed-image");
-  detailedTitle.innerHTML = image.getAttribute("data-detailed-title");
+  setTimeout(() => {
 
-  detailedImage.classList.add("animation-up");
-  detailedTitle.classList.add("animation-down");
+    detailedImage.src = image.getAttribute("data-detailed-image");
+    detailedTitle.innerHTML = image.getAttribute("data-detailed-overview");
+
+    detailedImage.classList.add("animation-up");
+    detailedTitle.classList.add("animation-down");
+
+  }, 10);
+
 }
 
-cats();
+drawMovies();

@@ -13,7 +13,7 @@ html {
 }
 body {
   margin: 0;
-  background: url(../images/dalmatian-spots-mobile.svg);
+  background: url(../images/background.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -176,7 +176,10 @@ h2 {
     --height-gallery-image: 15rem;
   }
   body {
-    background: url(../images/dalmatian-spots.svg);
+    background: url(../images/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
   }
   .detailedContainer--title:hover {
     font-size: 5rem;
@@ -204,7 +207,7 @@ h2 {
   }
   .gallery--item_title {
     display: block;
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
   }
   .gallery--item_image {

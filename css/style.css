@@ -1,24 +1,16 @@
-
 html {
-    --base-size:62.5%;
-    --gallery-item-width: 12rem;
-    --gallery-item-height: 10rem;
-    --detailed-image-width: 30rem;
-    --detailed-image-height: 25rem;
-    --border-radius: 40px;
+  --base-size: 62.5%;
+  --gallery-item-width: 12rem;
+  --gallery-item-height: 10rem;
+  --detailed-image-width: 30rem;
+  --detailed-image-height: 25rem;
+  --border-radius: 40px;
 }
 
 html {
   font-size: var(--base-size);
 }
 
-body {
-  margin: 0;
-  background: url(../images/bg.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
 h2 {
   margin: 0;
 }
@@ -64,12 +56,11 @@ h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
+
   font-style: italic;
 }
 .for_ellipsis {
   display: block;
-  
 }
 .gallery--item_image {
   width: var(--gallery-item-width);
@@ -91,7 +82,7 @@ h2 {
   width: 12rem;
   height: 3rem;
   font-size: 2rem;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   background-color: aliceblue;
   text-align: center;
 }
@@ -117,7 +108,6 @@ h2 {
 }
 
 @media screen and (min-width: 500px) {
-
   .main {
     flex-direction: row-reverse;
     flex-wrap: nowrap;
@@ -150,7 +140,7 @@ h2 {
 }
 @media screen and (min-width: 1000px) {
   body {
-    background: url(../images/bg.svg);
+    background: url(../images/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -180,7 +170,6 @@ h2 {
     display: none;
     z-index: -1;
   }
- 
 
   .gallery--item_image {
     width: 25rem;
