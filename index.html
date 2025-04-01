@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marvel Movies</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,33 +13,59 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-
     <link rel="stylesheet" href="css/fonts.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Filmagram</title>
   </head>
+
   <body>
     <header>
-      <h2 class="logo">Marvel Films</h2>
+      <h2 class="logo">Filmagram</h2>
     </header>
-    <div class="main">
+    <section class="main hidden">
       <div class="detailedFrame">
         <div class="detailedContainer">
           <img
-            src="./images/marvel.jpg"
-            alt="Marvel"
+            src="images/film.webp"
+            alt="common films image"
             class="detailedContainer--image animation-up"
           />
-          <span class="detailedContainer--title animation-down">
-            <span class="for_ellipsis"
-              >This is a list of Marvel films. Select a movie to see details.</span
-            >
-          </span>
-          <span class="detailedContainer--overview animation-down"></span>
-          <span class="detailedContainer--rating animation-down"></span>
+          <span class="detailedContainer--title animation-down"
+            >gallery of the movies from themoviedb API. You may see many movies
+            with images and short description. Sorted by popularity in the
+            descending order</span
+          >
+        </div>
+        <div class="button-back-container">
+          <button class="button-back" onclick="moveToInputData()">Back</button>
         </div>
       </div>
-      <ul class="gallery"></ul>
-    </div>
+      <div class="gallery-container">
+        <ul class="gallery" id="movies_gallery"></ul>
+        <button class="fold-button">Next</button>
+      </div>
+    </section>
+    <section>
+      <form id="query-form" class="input-form">
+        <div class="input-group">
+          <label class="input-label">Year</label>
+          <input
+            required
+            class="input-element"
+            type="number"
+            name="year"
+            placeholder="enter year"
+            min="1870"
+            max="2025"
+          />
+        </div>
+        <div class="input-buttons">
+          <button type="submit" class="input-button">Submit</button>
+          <button type="reset" class="input-button">Reset</button>
+        </div>
+      </form>
+    </section>
     <script src="src/script.js"></script>
   </body>
 </html>
