@@ -1,3 +1,3 @@
-# HW 23
+# HW 24
 
-## write application based on the data received from thecatapi 
+## added next and back buttons
